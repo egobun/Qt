@@ -3764,5 +3764,24 @@ protected:
   QPen mainPen() const;
 };
 
+class CustomPlot{
+
+public:
+
+    QVector<double> qv_x,qv_y;
+
+    void configurePlot(QCustomPlot* plot, const QString &str_y_axis, const QString &str_x_axis);
+
+    void addPoint(double x, double y);
+
+    void clearData();
+
+private:
+
+};
+
+
+
+
 #endif // QCUSTOMPLOT_H
 

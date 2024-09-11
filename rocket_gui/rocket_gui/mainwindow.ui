@@ -134,7 +134,7 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>790</x>
@@ -177,6 +177,19 @@
       </layout>
      </item>
     </layout>
+   </widget>
+   <widget class="QPushButton" name="btnOpenPitchWindow">
+    <property name="geometry">
+     <rect>
+      <x>990</x>
+      <y>450</y>
+      <width>161</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pitch Window</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

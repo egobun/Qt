@@ -12,15 +12,18 @@ SOURCES += \
     SerialPort.cpp \
     main.cpp \
     mainwindow.cpp \
+    pitchwindow.cpp \
     qcustomplot.cpp
 
 HEADERS += \
     SerialPort.h \
     mainwindow.h \
+    pitchwindow.h \
     qcustomplot.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    pitchwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

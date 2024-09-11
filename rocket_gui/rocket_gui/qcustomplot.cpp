@@ -23551,3 +23551,28 @@ QPen QCPItemBracket::mainPen() const
     return mSelected ? mSelectedPen : mPen;
 }
 
+
+void CustomPlot::configurePlot(QCustomPlot* plot, const QString &str_y_axis, const QString &str_x_axis){
+    plot->addGraph();
+    plot->graph(0)->setScatterStyle(QCPScatterStyle::ssCircle);
+    plot->graph(0)->setLineStyle(QCPGraph::lsLine);
+    plot->xAxis->setRange(0, 10);
+    plot->xAxis->setLabel(str_x_axis);
+    plot->yAxis->setLabel(str_y_axis);
+    plot->graph()->setName("Высота полета");
+}
+
+void CustomPlot::addPoint(double x, double y)
+{
+    //qDebug()<<y;
+
+    this->qv_x.append(x);
+    this->qv_y.append(y);
+}
+
+void CustomPlot::clearData()
+{
+    this->qv_x.clear();
+    this->qv_y.clear();
+}
+

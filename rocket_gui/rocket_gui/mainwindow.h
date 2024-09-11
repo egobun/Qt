@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QListWidget>
+#include "pitchwindow.h"
 #include "SerialPort.h"
 #include "qcustomplot.h"
 
@@ -16,6 +17,8 @@ class MainWindow;
 }
 QT_END_NAMESPACE
 
+class PitchWindow;
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -23,9 +26,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    Ui::MainWindow *ui;
+    SerialPort _port;
 
-    void addPoint(double x, double y);
-    void clearData();
+    CustomPlot custom_plot;
+
     void plot();
 
 private slots:
@@ -47,13 +52,16 @@ private slots:
 
     void on_rbtn20Hz_clicked();
 
-private:
-    Ui::MainWindow *ui;
+    void on_btnOpenPitchWindow_clicked();
 
-    SerialPort _port;
+private:
+    //Ui::MainWindow *ui;
+
+    PitchWindow* pitch_window;
+
+    //SerialPort _port;
+
     void loadPorts();
 
-    QVector<double> qv_x,qv_y;
-    QVector<double> qv_xx,qv_yy;
 };
 #endif // MAINWINDOW_H

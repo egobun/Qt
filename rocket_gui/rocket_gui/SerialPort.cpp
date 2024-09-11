@@ -1,5 +1,5 @@
 #include "SerialPort.h"
-QByteArray  dann;
+
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent}
     ,_serialPort(nullptr)
@@ -39,8 +39,8 @@ void SerialPort::dataReady()
         emit dataReceived(dann);
     }*/
     while (_serialPort->waitForReadyRead(10)){
-        dann = _serialPort->readAll();
-        emit dataReceived(dann);
+        //dann = _serialPort->readAll();
+        emit dataReceived(_serialPort->readAll());
     }
         //requestData += serial.readAll();
 
