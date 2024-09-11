@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->plot->addGraph();
     ui->plot->graph(0)->setScatterStyle(QCPScatterStyle::ssCircle);
-    ui->plot->graph(0)->setLineStyle(QCPGraph::lsNone);
+    ui->plot->graph(0)->setLineStyle(QCPGraph::lsLine);
     ui->plot->xAxis->setRange(0, 10);
     ui->plot->xAxis->setLabel("Время, [с]");
     ui->plot->yAxis->setLabel("Высота, [м]");
@@ -95,6 +95,7 @@ void MainWindow::readData(QByteArray data)
 {
 
     ui->lstMessages->addItem(QString(data));
+    ui->lstMessages->scrollToBottom(); // Прокрутка вниз
     QString x_data; // Второе значение (число с плавающей точкой)
     QString y_data;
     // Преобразуем QByteArray в QString
@@ -169,3 +170,57 @@ void MainWindow::readData(QByteArray data)
 
 
 }
+
+void MainWindow::on_checkTransmit_stateChanged(int arg1)
+{
+    if(ui->checkTransmit->isChecked()){
+        QString message = "TRANSMIT_IS_OK:1;";
+        auto numBytes = _port.write(message.toUtf8());
+        if(numBytes == -1){
+            QMessageBox::critical(this,"Error","Something went wrong");
+        }
+    } else {
+        QString message = "TRANSMIT_IS_OK:0;";
+        auto numBytes = _port.write(message.toUtf8());
+        if(numBytes == -1){
+            QMessageBox::critical(this,"Error","Something went wrong");
+        }
+    }
+}
+
+void MainWindow::on_rbtn1Hz_clicked()
+{
+    if(ui->rbtn1Hz->isChecked()){
+        QString message = "frequency_data_transmission:1;";
+        auto numBytes = _port.write(message.toUtf8());
+        if(numBytes == -1){
+            QMessageBox::critical(this,"Error","Something went wrong");
+        }
+    }
+}
+
+
+
+void MainWindow::on_rbtn10Hz_clicked()
+{
+    if(ui->rbtn10Hz->isChecked()){
+        QString message = "frequency_data_transmission:10;";
+        auto numBytes = _port.write(message.toUtf8());
+        if(numBytes == -1){
+            QMessageBox::critical(this,"Error","Something went wrong");
+        }
+    }
+}
+
+
+void MainWindow::on_rbtn20Hz_clicked()
+{
+    if(ui->rbtn20Hz->isChecked()){
+        QString message = "frequency_data_transmission:20;";
+        auto numBytes = _port.write(message.toUtf8());
+        if(numBytes == -1){
+            QMessageBox::critical(this,"Error","Something went wrong");
+        }
+    }
+}
+

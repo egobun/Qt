@@ -6,6 +6,7 @@
 #include <QtSerialPort/QSerialPortInfo>
 #include <QDebug>
 #include <QMessageBox>
+#include <QListWidget>
 #include "SerialPort.h"
 #include "qcustomplot.h"
 
@@ -38,6 +39,14 @@ private slots:
 
     void readData(QByteArray data);
 
+    void on_checkTransmit_stateChanged(int arg1);
+
+    void on_rbtn1Hz_clicked();
+
+    void on_rbtn10Hz_clicked();
+
+    void on_rbtn20Hz_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -45,5 +54,6 @@ private:
     void loadPorts();
 
     QVector<double> qv_x,qv_y;
+    QVector<double> qv_xx,qv_yy;
 };
 #endif // MAINWINDOW_H
