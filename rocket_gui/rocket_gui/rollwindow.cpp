@@ -1,26 +1,26 @@
-#include "pitchwindow.h"
-#include "ui_pitchwindow.h"
+#include "rollwindow.h"
+#include "ui_rollwindow.h"
 
-PitchWindow::PitchWindow(MainWindow *mainWin, QWidget *parent)
-    : QDialog(parent), ui(new Ui::PitchWindow), mainWin(mainWin) {
+RollWindow::RollWindow(MainWindow *mainWin, QWidget *parent)
+    : QDialog(parent), ui(new Ui::RollWindow), mainWin(mainWin) {
     ui->setupUi(this);
-    custom_plot.configurePlot(ui->pitch_plot, "Тангаж, [°]", "Время, [с]");
-    connect(&(mainWin->_port), &SerialPort::dataReceived,this,&PitchWindow::readData);
+    custom_plot.configurePlot(ui->roll_plot, "Крен, [°]", "Время, [с]");
+    connect(&(mainWin->_port), &SerialPort::dataReceived,this,&RollWindow::readData);
 }
 
-PitchWindow::~PitchWindow()
+RollWindow::~RollWindow()
 {
     delete ui;
 }
 
-void PitchWindow::plot()
+void RollWindow::plot()
 {
-    ui->pitch_plot->graph(0)->setData(custom_plot.qv_x,custom_plot.qv_y);
-    ui->pitch_plot->replot();
-    ui->pitch_plot->update();
+    ui->roll_plot->graph(0)->setData(custom_plot.qv_x,custom_plot.qv_y);
+    ui->roll_plot->replot();
+    ui->roll_plot->update();
 }
 
-void PitchWindow::readData(QByteArray data)
+void RollWindow::readData(QByteArray data)
 {
 
     QString x_data; // Второе значение (число с плавающей точкой)
@@ -49,17 +49,17 @@ void PitchWindow::readData(QByteArray data)
         if(pair[0] == "time"){
             x_data = pair[1];
         }
-        if(pair[0] == "pitch"){
+        if(pair[0] == "roll"){
             y_data = pair[1];
         }
     }
 
     if(x_data != "" && y_data != ""){
-        ui->pitch_plot->xAxis->setRange(x_data.toFloat()-5,x_data.toFloat()+5);
+        ui->roll_plot->xAxis->setRange(x_data.toFloat()-5,x_data.toFloat()+5);
         if(y_data.toFloat() > 0){
-            ui->pitch_plot->yAxis->setRange(0,y_data.toFloat()+8);
+            ui->roll_plot->yAxis->setRange(0,y_data.toFloat()+8);
         } else {
-            ui->pitch_plot->yAxis->setRange(0,y_data.toFloat()-8);
+            ui->roll_plot->yAxis->setRange(0,y_data.toFloat()-8);
         }
 
         custom_plot.addPoint(x_data.toFloat(),y_data.toFloat());
@@ -67,3 +67,6 @@ void PitchWindow::readData(QByteArray data)
     plot();
 
 }
+
+
+

@@ -1,5 +1,5 @@
-#ifndef PITCHWINDOW_H
-#define PITCHWINDOW_H
+#ifndef ROLLWINDOW_H
+#define ROLLWINDOW_H
 
 #include <QDialog>
 #include <QtSerialPort/QSerialPort>
@@ -14,19 +14,16 @@
 class MainWindow;
 
 namespace Ui {
-class PitchWindow;
+class RollWindow;
 }
 
-class PitchWindow : public QDialog
+class RollWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    //explicit PitchWindow(QWidget *parent = nullptr);
-
-    explicit PitchWindow(MainWindow *mainWin, QWidget *parent = nullptr);
-    ~PitchWindow();
-
+    explicit RollWindow(MainWindow *mainWin, QWidget *parent = nullptr);
+    ~RollWindow();
 
     CustomPlot custom_plot;
 
@@ -36,8 +33,10 @@ private slots:
     void readData(QByteArray data);
 
 private:
-    Ui::PitchWindow *ui;
+    Ui::RollWindow *ui;
     MainWindow *mainWin; // Указатель на MainWindow
 };
 
-#endif // PITCHWINDOW_H
+#endif // ROLLWINDOW_H
+
+

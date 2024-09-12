@@ -8,6 +8,7 @@
 #include <QMessageBox>
 #include <QListWidget>
 #include "pitchwindow.h"
+#include "rollwindow.h"
 #include "SerialPort.h"
 #include "qcustomplot.h"
 
@@ -18,6 +19,8 @@ class MainWindow;
 QT_END_NAMESPACE
 
 class PitchWindow;
+
+class RollWindow;
 
 class MainWindow : public QMainWindow
 {
@@ -34,9 +37,7 @@ public:
     void plot();
 
 private slots:
-    void on_btn_add_clicked();
 
-    void on_btn_clear_clicked();
 
     void on_btnOpenPorts_clicked();
 
@@ -54,10 +55,20 @@ private slots:
 
     void on_btnOpenPitchWindow_clicked();
 
+    void on_checkAltitude_stateChanged(int arg1);
+
+    void on_checkPitch_stateChanged(int arg1);
+
+    void on_btnOpenRollWindow_clicked();
+
+    void on_checkRoll_stateChanged(int arg1);
+
 private:
     //Ui::MainWindow *ui;
 
     PitchWindow* pitch_window;
+
+    RollWindow* roll_window;
 
     //SerialPort _port;
 
