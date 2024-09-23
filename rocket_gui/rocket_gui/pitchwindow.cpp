@@ -6,6 +6,8 @@ PitchWindow::PitchWindow(MainWindow *mainWin, QWidget *parent)
     ui->setupUi(this);
     custom_plot.configurePlot(ui->pitch_plot, "Тангаж, [°]", "Время, [с]");
     connect(&(mainWin->_port), &SerialPort::dataReceived,this,&PitchWindow::readData);
+    this->moveToThread(&_pitchthread);
+    _pitchthread.start();
 }
 
 PitchWindow::~PitchWindow()

@@ -7,10 +7,13 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QListWidget>
+#include <QThread>
 #include "pitchwindow.h"
 #include "rollwindow.h"
 #include "SerialPort.h"
 #include "qcustomplot.h"
+#include "dataprocessor.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -34,7 +37,17 @@ public:
 
     CustomPlot custom_plot;
 
-    void plot();
+    CustomPlot custom_pitch_plot;
+
+    CustomPlot custom_roll_plot;
+
+    CustomPlot custom_yaw_plot;
+
+    CustomPlot custom_d_pitch_plot;
+
+    CustomPlot custom_d_roll_plot;
+
+    void plot(QCustomPlot *plot, CustomPlot custom_plot);
 
 private slots:
 
@@ -43,7 +56,18 @@ private slots:
 
     void on_btnSend_clicked();
 
-    void readData(QByteArray data);
+    void readData(QByteArray data, const QString x_data, const QString y_data);
+
+    void readData_pitch(QByteArray data, QString x_data, QString y_data);
+
+    void readData_roll(QByteArray data, QString x_data, QString y_data);
+
+    void readData_yaw(QByteArray data);
+
+    void readData_d_pitch(QByteArray data, QString x_data, QString y_data);
+
+    void readData_d_roll(QByteArray data, QString x_data, QString y_data);
+
 
     void on_checkTransmit_stateChanged(int arg1);
 
@@ -62,6 +86,18 @@ private slots:
     void on_btnOpenRollWindow_clicked();
 
     void on_checkRoll_stateChanged(int arg1);
+
+    void on_tabWidget_currentChanged(int index);
+
+    void on_rbtn15Hz_clicked();
+
+    void on_checkYaw_stateChanged(int arg1);
+
+    void on_checkD_Pitch_stateChanged(int arg1);
+
+    void on_checkD_Roll_stateChanged(int arg1);
+
+    void on_checkD_Yaw_stateChanged(int arg1);
 
 private:
     //Ui::MainWindow *ui;

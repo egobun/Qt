@@ -10,6 +10,7 @@ CONFIG += c++17
 
 SOURCES += \
     SerialPort.cpp \
+    dataprocessor.cpp \
     main.cpp \
     mainwindow.cpp \
     pitchwindow.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     SerialPort.h \
+    dataprocessor.h \
     mainwindow.h \
     pitchwindow.h \
     qcustomplot.h \

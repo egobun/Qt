@@ -6,6 +6,8 @@ RollWindow::RollWindow(MainWindow *mainWin, QWidget *parent)
     ui->setupUi(this);
     custom_plot.configurePlot(ui->roll_plot, "Крен, [°]", "Время, [с]");
     connect(&(mainWin->_port), &SerialPort::dataReceived,this,&RollWindow::readData);
+    this->moveToThread(&_rollthread);
+    _rollthread.start();
 }
 
 RollWindow::~RollWindow()

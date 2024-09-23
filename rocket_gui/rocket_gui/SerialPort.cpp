@@ -3,7 +3,8 @@
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent}
     ,_serialPort(nullptr)
-{}
+{
+}
 
 bool SerialPort::connect(QString portName)
 {

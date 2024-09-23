@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QListWidget>
+#include <QThread>
 #include "SerialPort.h"
 #include "qcustomplot.h"
 #include "mainwindow.h"
@@ -35,6 +36,7 @@ private slots:
 private:
     Ui::RollWindow *ui;
     MainWindow *mainWin; // Указатель на MainWindow
+    QThread _rollthread;
 };
 
 #endif // ROLLWINDOW_H

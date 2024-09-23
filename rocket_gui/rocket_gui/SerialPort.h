@@ -4,7 +4,6 @@
 #include <QObject>
 #include <QtSerialPort/QSerialPort>
 
-
 class SerialPort : public QObject
 {
     Q_OBJECT

@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QListWidget>
+#include <QThread>
 #include "SerialPort.h"
 #include "qcustomplot.h"
 #include "mainwindow.h"
@@ -38,6 +39,7 @@ private slots:
 private:
     Ui::PitchWindow *ui;
     MainWindow *mainWin; // Указатель на MainWindow
+    QThread _pitchthread;
 };
 
 #endif // PITCHWINDOW_H
