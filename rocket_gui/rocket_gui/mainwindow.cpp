@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     custom_yaw_plot.configurePlot(ui->yaw_plot, "Рысканье, [°]", "Время, [с]");
     custom_d_pitch_plot.configurePlot(ui->d_pitch_plot, "Скорость изм. тангажа, [°/с]", "Время, [с]");
     custom_d_roll_plot.configurePlot(ui->d_roll_plot, "Скорость изм. крена, [°/с]", "Время, [с]");
+    custom_d_yaw_plot.configurePlot(ui->d_yaw_plot, "Скорость изм. рысканья, [°/с]", "Время, [с]");
     loadPorts();
 
     // Создаем поток и процессор данных
@@ -51,6 +52,11 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Подключаем сигнал от DataProcessor к слоту readData в MainWindow
     connect(dataProcessor, &DataProcessor::data_d_roll_Processed, this, &MainWindow::readData_d_roll);
+
+    connect(&_port, &SerialPort::dataReceived, dataProcessor, &DataProcessor::process_d_yaw_Data);
+
+    // Подключаем сигнал от DataProcessor к слоту readData в MainWindow
+    connect(dataProcessor, &DataProcessor::data_d_yaw_Processed, this, &MainWindow::readData_d_yaw);
 
 
 
@@ -216,6 +222,17 @@ void MainWindow::readData_d_roll(QByteArray data, QString x_data, QString y_data
         custom_d_roll_plot.addPoint(x_data.toFloat(),y_data.toFloat());
     }
     plot(ui->d_roll_plot,custom_d_roll_plot);
+}
+
+void MainWindow::readData_d_yaw(QByteArray data, QString x_data, QString y_data)
+{
+    if(x_data != "" && y_data != ""){
+        ui->d_yaw_plot->xAxis->setRange(x_data.toFloat()-width_time_field,x_data.toFloat()+width_time_field);
+        ui->d_yaw_plot->yAxis->setRange(y_data.toFloat()-width_data_field,y_data.toFloat()+width_data_field);
+
+        custom_d_yaw_plot.addPoint(x_data.toFloat(),y_data.toFloat());
+    }
+    plot(ui->d_yaw_plot,custom_d_yaw_plot);
 }
 
 void MainWindow::on_checkTransmit_stateChanged(int arg1)

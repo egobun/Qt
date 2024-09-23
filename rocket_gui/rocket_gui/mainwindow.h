@@ -47,6 +47,8 @@ public:
 
     CustomPlot custom_d_roll_plot;
 
+    CustomPlot custom_d_yaw_plot;
+
     void plot(QCustomPlot *plot, CustomPlot custom_plot);
 
 private slots:
@@ -67,6 +69,8 @@ private slots:
     void readData_d_pitch(QByteArray data, QString x_data, QString y_data);
 
     void readData_d_roll(QByteArray data, QString x_data, QString y_data);
+
+    void readData_d_yaw(QByteArray data, QString x_data, QString y_data);
 
 
     void on_checkTransmit_stateChanged(int arg1);

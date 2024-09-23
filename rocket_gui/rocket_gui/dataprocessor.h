@@ -21,6 +21,8 @@ signals:
 
     void data_d_roll_Processed(QByteArray data, const QString x_data, const QString y_data);
 
+    void data_d_yaw_Processed(QByteArray data, const QString x_data, const QString y_data);
+
 public slots:
     void processData(const QByteArray &data);
 
@@ -31,6 +33,8 @@ public slots:
     void process_d_pitch_Data(const QByteArray &data);
 
     void process_d_roll_Data(const QByteArray &data);
+
+    void process_d_yaw_Data(const QByteArray &data);
 };
 
 #endif // DATAPROCESSOR_H
