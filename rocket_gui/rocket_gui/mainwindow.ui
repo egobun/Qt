@@ -242,14 +242,21 @@
         <item>
          <widget class="QCheckBox" name="checkAltitude">
           <property name="text">
-           <string>Altitude_is_OK</string>
+           <string>Altitude</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_4">
+         <widget class="QCheckBox" name="checkTemperature">
           <property name="text">
-           <string>Temperature_is_OK</string>
+           <string>Temperature</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBattery_voltage">
+          <property name="text">
+           <string>Battery voltage</string>
           </property>
          </widget>
         </item>
@@ -270,7 +277,7 @@
         <item row="2" column="0">
          <widget class="QCheckBox" name="checkRoll">
           <property name="text">
-           <string>Roll_is_OK</string>
+           <string>Roll</string>
           </property>
          </widget>
         </item>
@@ -284,14 +291,14 @@
         <item row="3" column="0">
          <widget class="QCheckBox" name="checkYaw">
           <property name="text">
-           <string>Yaw_is_OK</string>
+           <string>Yaw</string>
           </property>
          </widget>
         </item>
         <item row="1" column="0">
          <widget class="QCheckBox" name="checkPitch">
           <property name="text">
-           <string>Pitch_is_OK</string>
+           <string>Pitch</string>
           </property>
          </widget>
         </item>
@@ -360,7 +367,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -544,6 +551,57 @@
           </property>
           <property name="text">
            <string>Roll velocity</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>System information</string>
+       </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QCustomPlot" name="temperature_plot" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCustomPlot" name="battery_voltage_plot" native="true">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
           </property>
          </widget>
         </item>

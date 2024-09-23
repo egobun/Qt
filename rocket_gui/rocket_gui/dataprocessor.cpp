@@ -227,3 +227,79 @@ void DataProcessor::process_d_yaw_Data(const QByteArray &data) {
     // После обработки данных можно отправить сигнал о завершении
     emit data_d_yaw_Processed(data, x_data, y_data);  // Отправляем сигнал с обработанными данными
 }
+
+void DataProcessor::process_temperature_Data(const QByteArray &data) {
+    // Здесь добавьте ваш код для обработки данных
+    // Например, вы можете просто вывести данные в консоль
+    //qDebug() << "Processing data:" << data;
+    QString x_data; // Второе значение (число с плавающей точкой)
+    QString y_data;
+    // Преобразуем QByteArray в QString
+    QString stringData = QString::fromUtf8(data);
+
+    // Разделяем строку на части по пробелу
+    QStringList dataList = stringData.split(' ', QString::SkipEmptyParts);
+
+    QVector<QStringList> result;
+
+    for (const QString& item : dataList) {
+        // Разделяем каждый элемент по двоеточию
+        QStringList keyValue = item.split(':', QString::SkipEmptyParts);
+        if (keyValue.size() == 2) {
+            // Добавляем в результирующий вектор
+            QStringList pair;
+            pair.append(keyValue[0].trimmed());
+            pair.append(keyValue[1].trimmed());
+            result.append(pair);
+        }
+    }
+
+    for (const QStringList& pair : result) {
+        if(pair[0] == "time"){
+            x_data = pair[1];
+        }
+        if(pair[0] == "temperature"){
+            y_data = pair[1];
+        }
+    }
+    // После обработки данных можно отправить сигнал о завершении
+    emit data_temperature_Processed(data, x_data, y_data);  // Отправляем сигнал с обработанными данными
+}
+
+void DataProcessor::process_battery_voltage_Data(const QByteArray &data) {
+    // Здесь добавьте ваш код для обработки данных
+    // Например, вы можете просто вывести данные в консоль
+    //qDebug() << "Processing data:" << data;
+    QString x_data; // Второе значение (число с плавающей точкой)
+    QString y_data;
+    // Преобразуем QByteArray в QString
+    QString stringData = QString::fromUtf8(data);
+
+    // Разделяем строку на части по пробелу
+    QStringList dataList = stringData.split(' ', QString::SkipEmptyParts);
+
+    QVector<QStringList> result;
+
+    for (const QString& item : dataList) {
+        // Разделяем каждый элемент по двоеточию
+        QStringList keyValue = item.split(':', QString::SkipEmptyParts);
+        if (keyValue.size() == 2) {
+            // Добавляем в результирующий вектор
+            QStringList pair;
+            pair.append(keyValue[0].trimmed());
+            pair.append(keyValue[1].trimmed());
+            result.append(pair);
+        }
+    }
+
+    for (const QStringList& pair : result) {
+        if(pair[0] == "time"){
+            x_data = pair[1];
+        }
+        if(pair[0] == "battery_voltage"){
+            y_data = pair[1];
+        }
+    }
+    // После обработки данных можно отправить сигнал о завершении
+    emit data_battery_voltage_Processed(data, x_data, y_data);  // Отправляем сигнал с обработанными данными
+}

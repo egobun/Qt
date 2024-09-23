@@ -49,6 +49,10 @@ public:
 
     CustomPlot custom_d_yaw_plot;
 
+    CustomPlot custom_temperature_plot;
+
+    CustomPlot custom_battery_voltage_plot;
+
     void plot(QCustomPlot *plot, CustomPlot custom_plot);
 
 private slots:
@@ -71,6 +75,10 @@ private slots:
     void readData_d_roll(QByteArray data, QString x_data, QString y_data);
 
     void readData_d_yaw(QByteArray data, QString x_data, QString y_data);
+
+    void readData_temperature(QByteArray data, QString x_data, QString y_data);
+
+    void readData_battery_voltage(QByteArray data, QString x_data, QString y_data);
 
 
     void on_checkTransmit_stateChanged(int arg1);
@@ -102,6 +110,10 @@ private slots:
     void on_checkD_Roll_stateChanged(int arg1);
 
     void on_checkD_Yaw_stateChanged(int arg1);
+
+    void on_checkTemperature_stateChanged(int arg1);
+
+    void on_checkBattery_voltage_stateChanged(int arg1);
 
 private:
     //Ui::MainWindow *ui;
